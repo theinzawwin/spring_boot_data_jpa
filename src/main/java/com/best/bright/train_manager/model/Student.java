@@ -33,4 +33,18 @@ public class Student implements Serializable {
 	}
 	private String name;
 	private String rollNo;
+	private int age;
+	private String phoneNo;
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public String getPhoneNo() {
+		return phoneNo;
+	}
+	public void setPhoneNo(String phoneNo) {
+		this.phoneNo = phoneNo;
+	}
 }

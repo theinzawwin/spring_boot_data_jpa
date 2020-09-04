@@ -70,4 +70,24 @@ public class StuentController {
 		studentRepositroy.delete(std);
 		return true;
 	}
+	@GetMapping("/std_list/{name}")
+	public @ResponseBody List<Student> getStudentListByName(@PathVariable(value="name") String name){
+		List<Student> stdList= studentRepositroy.findByNameLike(name);
+		return stdList;
+	}
+	
+	@GetMapping("/std_list_by_rollno/{rollNo}")
+	public @ResponseBody List<Student> getStudentListByRollNo(@PathVariable(value="rollNo") String name){
+		List<Student> stdList= studentRepositroy.findByRollNo(name);
+		return stdList;
+	}
+	@GetMapping("/std_list_by_age/{from}/{to}")
+	public @ResponseBody List<Student> getStudentListByRollNo(@PathVariable(value="from") int from,@PathVariable(value="to")int to){
+		List<Student> stdList= studentRepositroy.findByAgeBetween(from, to);
+		return stdList;
+	}
+	@GetMapping("/find_by_name/{name}")
+	public @ResponseBody Student findByName(@PathVariable String name) {
+		return studentRepositroy.findByName(name);
+	}
 }
