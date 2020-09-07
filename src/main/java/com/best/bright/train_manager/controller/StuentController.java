@@ -15,13 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.best.bright.train_manager.dto.StudentInfo;
+import com.best.bright.train_manager.dto.StudentRegisterDTO;
 import com.best.bright.train_manager.model.Student;
 import com.best.bright.train_manager.repository.StudentRepository;
+import com.best.bright.train_manager.services.StudentManagerInterface;
 
 @Controller
 public class StuentController {
 	@Autowired
 	private StudentRepository studentRepositroy;
+	@Autowired
+	private StudentManagerInterface studentManager;
 	@PostMapping(path="/add") // Map ONLY POST Requests
 	  public @ResponseBody String addNewUser (@RequestParam String name
 	      , @RequestParam String rollNo) {
@@ -89,5 +94,14 @@ public class StuentController {
 	@GetMapping("/find_by_name/{name}")
 	public @ResponseBody Student findByName(@PathVariable String name) {
 		return studentRepositroy.findByName(name);
+	}
+	@GetMapping("/all_student")
+	@ResponseBody
+	public List<StudentInfo> allStudent(){
+		return studentManager.getStudentInfo();
+	}
+	@GetMapping("/register_students")
+	public @ResponseBody List<StudentRegisterDTO> getRegisterStudentList(){
+		return studentManager.getAllStudentList();
 	}
 }
